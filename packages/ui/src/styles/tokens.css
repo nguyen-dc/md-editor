@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design tokens stored as "R G B" so Tailwind can apply alpha via <alpha-value>. */
+  --color-primary: 59 130 246;
+  --color-primary-foreground: 255 255 255;
+
+  --color-secondary: 15 23 42;
+  --color-secondary-foreground: 226 232 240;
+
+  --color-border: 148 163 184;
+  --color-background: 255 255 255;
+  --color-foreground: 15 23 42;
+  --color-muted: 241 245 249;
+
+  --radius-md: 0.5rem;
+}

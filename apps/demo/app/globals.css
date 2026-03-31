@@ -1,0 +1,38 @@
+:root {
+  /* Demo-specific overrides to prove library tokens are customizable. */
+  --color-primary: 34 197 94;
+  --color-primary-foreground: 240 253 244;
+
+  --color-secondary: 99 102 241;
+  --color-secondary-foreground: 255 255 255;
+
+  --color-border: 148 163 184;
+  --color-background: 255 255 255;
+  --color-foreground: 15 23 42;
+  --color-muted: 241 245 249;
+
+  --radius-md: 0.75rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+
