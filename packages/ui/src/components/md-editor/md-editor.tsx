@@ -1,6 +1,6 @@
 "use client";
 
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, Extension } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 import StarterKit from '@tiptap/starter-kit';
 import { Markdown, type MarkdownStorage } from 'tiptap-markdown';
@@ -10,6 +10,31 @@ import { Bold, Italic, Heading1, Heading2, List, Quote } from 'lucide-react';
 
 export default function MdEditor({ initialMarkdown, onChange }: { initialMarkdown: string, onChange: (md: string) => void }) {
 
+  const ListFixExtension = Extension.create({
+    name: 'listFix',
+
+    addKeyboardShortcuts() {
+      return {
+        Enter: () => {
+          // 1. Check if the user is currently inside a list
+          if (this.editor.isActive('listItem')) {
+            const { $from } = this.editor.state.selection;
+
+            // 2. Check if the current line (paragraph inside the list) is completely empty
+            if ($from.parent.textContent.length === 0) {
+
+              // 3. Force Tiptap to "lift" the item (break out of the list)
+              // Returning true tells Tiptap: "I handled this, stop doing default stuff."
+              return this.editor.commands.liftListItem('listItem');
+            }
+          }
+
+          // If the line is NOT empty, return false to let Tiptap do its normal Enter behavior
+          return false;
+        },
+      };
+    },
+  });
   const editor = useEditor({
     // Enable immediatelyRender to prevent Next.js hydration mismatch errors
     immediatelyRender: false,
@@ -21,9 +46,10 @@ export default function MdEditor({ initialMarkdown, onChange }: { initialMarkdow
         emptyEditorClass: 'is-editor-empty',
       }),
       GlobalDragHandle.configure({
-        dragHandleWidth: 20,
+        dragHandleWidth: 28,
         scrollTreshold: 100,
       }),
+      ListFixExtension,
     ],
     content: initialMarkdown,
     editorProps: {

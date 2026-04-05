@@ -1,0 +1,24 @@
+@import "./tokens.css";
+
+/* Base document styles for consumers of @md-editor/ui */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+  background: rgb(var(--color-background) / 1);
+  color: rgb(var(--color-foreground) / 1);
+}

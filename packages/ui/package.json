@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist"
   ],
@@ -12,12 +14,13 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./dist/index.css": "./dist/index.css"
+    "./dist/index.css": "./dist/index.css",
+    "./global.css": "./dist/index.css"
   },
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:js": "tsc -p tsconfig.build.json",
-    "build:css": "tailwindcss -c tailwind.config.ts -i src/styles/tokens.css -o dist/index.css --minify",
+    "build:css": "tailwindcss -c tailwind.config.ts -i src/styles/global.css -o dist/index.css --minify",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
     "lint": "echo \"lint skipped\"",
     "dev": "npm run storybook",
